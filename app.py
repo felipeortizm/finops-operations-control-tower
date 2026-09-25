@@ -65,12 +65,14 @@ def usd(value):
     return f"${value:,.0f}"
 
 
-col = st.columns(5)
-col[0].metric("AWS cost / demo", usd(total("actual_cost")))
-col[1].metric("Net savings", usd(total("net_savings")))
-col[2].metric("Coverage", f"{total('covered_od')/total('eligible_od'):.1%}" if total("eligible_od") else "—")
-col[3].metric("Utilization", f"{total('applied_commitment')/total('committed_spend'):.1%}" if total("committed_spend") else "—")
-col[4].metric("Expected fee", usd(total("expected_fee")))
+money = st.columns(3)
+money[0].metric("AWS cost / demo", usd(total("actual_cost")))
+money[1].metric("Net savings", usd(total("net_savings")))
+money[2].metric("Expected fee", usd(total("expected_fee")))
+
+ratios = st.columns(2)
+ratios[0].metric("Coverage", f"{total('covered_od')/total('eligible_od'):.1%}" if total("eligible_od") else "—")
+ratios[1].metric("Utilization", f"{total('applied_commitment')/total('committed_spend'):.1%}" if total("committed_spend") else "—")
 
 tab_queue, tab_portfolio, tab_billing, tab_method = st.tabs(
     ["Operations queue", "Portfolio & commitments", "Billing reconciliation", "Method & controls"]
