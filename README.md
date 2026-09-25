@@ -1,6 +1,7 @@
 # FinOps Operations Control Tower
 
 **A small, runnable operations system for cloud commitment risk and billing reconciliation.** It turns synthetic AWS-like hourly usage into a prioritized review queue. Built as a portfolio demonstration of SQL, financial controls, analytics and internal tooling.
+**Live demo:** [Explore the FinOps dashboard](https://finops-operations-control-tower-pvgheewzqdrus5eappj2msr.streamlit.app)
 
 > **Quick review:** run the app, open **Operations queue**, then inspect Globex (declining demand), Umbrella (missing invoice), and Stark (low coverage with fully utilized commitment). All customer and billing data is invented. This project is independent of Frust and does not reproduce its product or customer contracts.
 
