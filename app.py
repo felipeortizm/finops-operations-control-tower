@@ -1,9 +1,11 @@
 """Streamlit frontend for the synthetic FinOps operations demo."""
+import os
 import pandas as pd
 import streamlit as st
 
 from src.operations import load, make_queue
 from src.seed import seed
+from src.db import ROOT
 
 st.set_page_config(page_title="FinOps Operations Control Tower", page_icon="◈", layout="wide")
 st.markdown("""
@@ -22,6 +24,9 @@ st.markdown("""
 @st.cache_data(ttl=30)
 def data():
     return load()
+
+if not os.environ.get("DATABASE_URL") and not (ROOT / "finops_demo.db").exists():
+    seed()
 
 
 st.markdown('<div class="eyebrow">PORTFOLIO OPERATIONS / DEMONSTRATION</div>', unsafe_allow_html=True)
